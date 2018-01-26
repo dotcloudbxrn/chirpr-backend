@@ -1,5 +1,9 @@
 module.exports = (app) => {
   app.get('/cool', (req, res) => {
-    res.send('COOOOOOOOOOOOL')
+    console.log('DAMN')
+    res.send({
+      hi: 'cool'
+    })
+    res.end()
   })
 }
