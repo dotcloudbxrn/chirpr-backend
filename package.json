@@ -4,12 +4,13 @@
   "description": "Backend implementation of a Twitter-clone",
   "main": "index.js",
   "dependencies": {
+    "cors": "^2.8.4",
     "express": "^4.16.2",
     "mongoose": "^5.0.1"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "author": "AT",
   "license": "MIT"
