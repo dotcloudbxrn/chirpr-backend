@@ -1,5 +1,5 @@
 module.exports = {
   index: (req, res) => {
-    res.send('hi')
+    res.json({message: 'hi'})
   }
 }

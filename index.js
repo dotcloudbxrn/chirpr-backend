@@ -1,13 +1,11 @@
 const port = process.env.PORT || 4040
 const env = process.env.NODE_ENV || 'development'
-const settings = require('./config/settings')[env]
+const settings = require('./config/config')[env]
 const app = require('./config/express')
-const cors = require('cors')
+const morgan = require('morgan')
 
-app.use(cors())
-
+require('./config/passport')
 require('./config/db')(settings)
-require('./routes')(app)
 
 app.listen(port)
 console.log(`Listening on port ${port}`)
