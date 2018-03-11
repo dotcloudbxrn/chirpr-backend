@@ -11,5 +11,7 @@ module.exports = (app) => {
     controllers.authentication.login)
   app.post('/chirp/create',
     isAuthenticated,
-    controllers.chirp.create)
+    controllers.chirp.create),
+  app.get('/chirps',
+    controllers.chirp.index)
 }

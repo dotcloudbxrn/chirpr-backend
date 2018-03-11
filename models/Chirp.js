@@ -1,6 +1,6 @@
 const mongoose = require('mongoose'),
       Schema = mongoose.Schema,
-      ObjectId = Schema.ObjectId
+      ObjectId = Schema.ObjectId;
 
 const ChirpSchema = new Schema({
   chirpContent: {
@@ -9,7 +9,8 @@ const ChirpSchema = new Schema({
   },
   creator: {
     type: ObjectId,
-    required: true
+    required: true,
+    ref: 'User'
   }
 })
 

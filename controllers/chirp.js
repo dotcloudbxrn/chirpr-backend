@@ -1,4 +1,5 @@
 const Chirp = require('../models/Chirp')
+const User = require('../models/User')
 
 module.exports = {
   async create (req, res) {
@@ -24,6 +25,20 @@ module.exports = {
         error: 'Could not create chirp'
       })
       return err
+    }
+  },
+  async index (req, res) {
+    try {
+      await Chirp.find({})
+        .populate({path:'creator', model: User})
+        .exec((err, chirps) => {
+          if (err) {
+            return err
+          }
+          res.json(chirps)
+        })
+    } catch (err) {
+      console.log(err)
     }
   }
 }
