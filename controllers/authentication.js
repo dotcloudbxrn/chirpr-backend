@@ -8,6 +8,7 @@ const config = require('../config/config')
 function simplifyUser(request) {
   return {
     _id: request._id,
+    username: request.username,
     firstName: request.profile.firstName,
     lastName: request.profile.lastName,
     email: request.email,
@@ -87,7 +88,7 @@ module.exports = {
       })
     } catch (err) {
       res.status(500).send({
-        error: `I don't know statuses too well, we couldn't log you in`
+        error: `There was an internal server error, we couldn't log you in`
       })
     }
   }
