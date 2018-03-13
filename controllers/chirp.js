@@ -31,6 +31,7 @@ module.exports = {
   async index (req, res) {
     try {
       await Chirp.find({})
+        .sort({'createdAt':'desc'})
         .populate({path:'creator', model: User})
         .exec((err, chirps) => {
           if (err) {
