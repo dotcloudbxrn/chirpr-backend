@@ -13,10 +13,10 @@ passport.use(
   }, async function (jwtPayload, done) {
     try {
       const user = await User.findOne({_id: jwtPayload._id}, (err, user) => {
+        console.log('the user is?', user)
         if (!user) {
           return done(new Error(), false)
         }
-
         return done(null, user)
       })
     } catch (err) {

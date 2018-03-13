@@ -8,10 +8,10 @@ module.exports = (app) => {
     authenticationControllerPolicy.register,
     controllers.authentication.register)
   app.post('/login',
-    controllers.authentication.login)
+    controllers.authentication.login),
   app.post('/chirp/create',
     isAuthenticated,
-    controllers.chirp.create),
+    controllers.chirp.create)
   app.get('/chirps',
     controllers.chirp.index)
 }

@@ -9,10 +9,7 @@ module.exports = (settings) => {
 		if (err) {
 			throw err
 		}
-		db.collections['users'].drop((err) => {
-			if (err) { return err }
-			console.log('Dropped')
-		})
+		db.dropDatabase()
 		console.log('Connected to MongoDB')
 	})
 

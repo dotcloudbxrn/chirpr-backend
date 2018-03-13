@@ -21,11 +21,6 @@ const UserSchema = new Schema({
   profile: {
     firstName: { type: String },
     lastName: { type: String }
-  },
-  role: {
-    type: String,
-    enum: ['Member', 'Admin'],
-    default: 'Member'
   }
 },{
   timestamps: true

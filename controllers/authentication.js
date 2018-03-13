@@ -2,9 +2,6 @@ const User = require('../models/User')
 const jwt = require('jsonwebtoken')
 const config = require('../config/config')
 
-
-// simplify user object once you retrieve it from the DB
-// so that you can sign your JWT onto it
 function simplifyUser(request) {
   return {
     _id: request._id,
@@ -25,7 +22,6 @@ function jwtSignUser (user) {
 
 module.exports = {
   async register (req, res) {
-    // If nobody has taken this email address or username create the new user
     try {
       User.findOne({$or: [
         {"email": req.body.email},
@@ -41,8 +37,7 @@ module.exports = {
             email: req.body.email,
             password: req.body.password,
             "profile.firstName": req.body.firstname,
-            "profile.lastName": req.body.lastname,
-            role: req.body.role
+            "profile.lastName": req.body.lastname
           })
           user.save((err, user) => {
             if (err) {
