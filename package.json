@@ -9,6 +9,7 @@
     "cors": "^2.8.4",
     "crypto": "^1.0.1",
     "express": "^4.16.2",
+    "imgur-node-api": "^0.1.0",
     "joi": "^13.1.2",
     "jsonwebtoken": "^8.1.1",
     "lodash": "^4.17.5",

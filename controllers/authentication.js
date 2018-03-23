@@ -6,10 +6,11 @@ function simplifyUser(request) {
   return {
     _id: request._id,
     username: request.username,
-    firstName: request.profile.firstName,
-    lastName: request.profile.lastName,
+    firstName: request.firstName,
+    lastName: request.lastName,
     email: request.email,
-    role: request.role,
+    avatar: request.avatar,
+    coverImage: request.coverImage
   };
 }
 
@@ -36,8 +37,8 @@ module.exports = {
             username: req.body.username,
             email: req.body.email,
             password: req.body.password,
-            "profile.firstName": req.body.firstname,
-            "profile.lastName": req.body.lastname
+            firstName: req.body.firstname,
+            lastName: req.body.lastname
           })
           user.save((err, user) => {
             if (err) {

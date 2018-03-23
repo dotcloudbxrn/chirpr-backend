@@ -14,4 +14,8 @@ module.exports = (app) => {
     controllers.chirp.create)
   app.get('/chirps',
     controllers.chirp.index)
+  app.get('/getuser/:username',
+    controllers.profile.getUserInfo)
+  app.post('/edituser/:username',
+    controllers.profile.editUserInfo)
 }

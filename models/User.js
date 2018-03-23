@@ -18,9 +18,26 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  profile: {
-    firstName: { type: String },
-    lastName: { type: String }
+  firstName: {
+    type: String,
+    required: true
+  },
+  lastName: {
+    type: String,
+    required: true
+  },
+  bio: {
+    type: String,
+    default: 'Default Bio'
+  },
+  avatar: {
+    type: String,
+    default : 'http://cdn1.vox-cdn.com/assets/4830632/untitled-1.jpg'
+    
+  },
+  coverImage: {
+    type: String,
+    default: 'https://www.rpgfix.com/styles/brivium/ProfileCover/default.jpg'
   }
 },{
   timestamps: true
