@@ -9,7 +9,7 @@ module.exports = (settings) => {
 		if (err) {
 			throw err
 		}
-		// db.dropDatabase()
+		db.dropDatabase()
 		console.log('Connected to MongoDB')
 	})
 
