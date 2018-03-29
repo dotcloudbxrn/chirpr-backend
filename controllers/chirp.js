@@ -9,12 +9,14 @@ module.exports = {
         creator: req.user._id
       })
 
-      chirp.save((err, chirp) => {
+      await chirp.save((err, chirp) => {
         if (err) {
           res.status(400).send({
             error: 'Error creating chirp, please try again'
           })
         }
+        console.log('created chirp', chirp)
+        res.end()
       })
     } catch (err) {
       res.status(400).send({
@@ -35,7 +37,8 @@ module.exports = {
           res.json(chirps)
         })
     } catch (err) {
-      console.log(err)
+      console.log('eh', err)
+      res.end()
     }
   } 
 }

@@ -2,8 +2,11 @@ const User = require('../models/User')
 
 module.exports = {
 	getUserInfo (req, res) {
+		console.log('user', req.params)
 		let username = req.params.username
-		User.findOne({username: username}, (err, user) => {
+		console.log('getUserInfo', username)
+		User.findOne({'username': username}, (err, user) => {
+			console.log('found', user)
 				if (!err) {
 					let resUser = {
 						firstName: user.firstName,
@@ -23,20 +26,27 @@ module.exports = {
 	editUserInfo (req, res) {
 		let username = req.params.username
 		let updates = req.body
-		User.findOne({'username': username}, (err, user) => {
-			if (err) console.log(err)
-			for (prop in updates) {
-				if (updates[prop] && user[prop] !== updates[prop]) {
-					user[prop] = updates[prop]
+		try {
+			User.findOne({'username': username}, (err, user) => {
+				if (err) console.log('err in us3r', err)
+				for (prop in updates) {
+					if (updates[prop] && user[prop] !== updates[prop]) {
+						user[prop] = updates[prop]
+					}
 				}
-			}
-			user.save().then(user => {
-				if (!user) {
-					console.log(err)
-					res.status(500).send('Could not update user after applying updates.')
-				}
-				res.json(user)
+				user.save().then(user => {
+					if (!user) {
+						console.log(err)
+						res.status(500).send('Could not update user after applying updates.')
+					}
+					res.json(user)
+				})
 			})
-		})
+		} catch (error) {
+			console.log(error)
+			res.status(404).send({
+				msg: 'Cannot post chirp'
+			})
+		}
 	}
 }

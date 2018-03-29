@@ -4,6 +4,7 @@ module.exports =  {
 	development: {
 		rootDir: path.normalize(__dirname, '../../'),
 		dbPath: 'mongodb://localhost:27017/Chirpr',
+		clientUrl: 'http://localhost:8080'
 	},
 	production: {
 		rootDir: path.normalize(__dirname,'../../'),

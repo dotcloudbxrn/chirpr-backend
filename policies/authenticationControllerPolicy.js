@@ -15,7 +15,7 @@ module.exports = {
 
     const {error} = Joi.validate(req.body, schema)
     if (error) {
-      console.log(error)
+      console.log('joi validate', error)
       switch (error.details[0].context.key) {
         case 'email':
           res.status(400).send({
