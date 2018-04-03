@@ -33,11 +33,16 @@ const UserSchema = new Schema({
   avatar: {
     type: String,
     default : 'http://cdn1.vox-cdn.com/assets/4830632/untitled-1.jpg'
-    
   },
   coverImage: {
     type: String,
     default: 'https://www.rpgfix.com/styles/brivium/ProfileCover/default.jpg'
+  },
+  followers: {
+    type: Array
+  },
+  following: {
+    type: Array
   }
 },{
   timestamps: true

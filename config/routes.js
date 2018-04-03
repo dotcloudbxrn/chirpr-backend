@@ -18,4 +18,8 @@ module.exports = (app) => {
     controllers.profile.getUserInfo)
   app.post('/edituser/:username',
     controllers.profile.editUserInfo)
+  app.post('/togglefollow/:id',
+    controllers.profile.toggleFollow)
+  app.post('/checkfollowing/:id',
+    controllers.profile.checkFollowingStatus)
 }

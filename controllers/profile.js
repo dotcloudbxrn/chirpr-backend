@@ -1,14 +1,19 @@
 const User = require('../models/User')
 
+// returns true if the user is following
+isFollowing = (id, following) => {
+	return User.findOne({'_id': id}).exec().then(user => {
+		return user.following.indexOf(following) > -1
+	})
+}
+
 module.exports = {
 	getUserInfo (req, res) {
-		console.log('user', req.params)
 		let username = req.params.username
-		console.log('getUserInfo', username)
 		User.findOne({'username': username}, (err, user) => {
-			console.log('found', user)
 				if (!err) {
 					let resUser = {
+						_id: user._id,
 						firstName: user.firstName,
 						lastName: user.lastName,
 						username: user.username,
@@ -36,7 +41,6 @@ module.exports = {
 				}
 				user.save().then(user => {
 					if (!user) {
-						console.log(err)
 						res.status(500).send('Could not update user after applying updates.')
 					}
 					res.json(user)
@@ -48,5 +52,32 @@ module.exports = {
 				msg: 'Cannot post chirp'
 			})
 		}
+	},
+	async toggleFollow (req, res) {
+		let user = User.findOne({'_id': req.body.id}, (err, user) => {
+			if (user.following.indexOf(req.body.following) != -1) {
+				user.following.pop(req.body.following)
+				user.save((err, user) => {
+					if (err) {
+						console.log('err removing follower', err)
+					}
+					res.json({following: false})
+				})
+			} else {
+				user.following.push(req.body.following)
+				user.save((err, user) => {
+					if (err) {
+						console.log('err adding follower', err)
+					}
+					res.json({following: true})
+				})
+			}
+		})
+	},
+	async checkFollowingStatus (req, res) {
+		let userId = req.body.id
+		let isFollowingUsername = req.body.following
+		let result = await isFollowing(userId, isFollowingUsername)
+		res.json({following: result})
 	}
 }
